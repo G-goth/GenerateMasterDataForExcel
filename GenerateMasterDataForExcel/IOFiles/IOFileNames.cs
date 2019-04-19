@@ -14,8 +14,8 @@ namespace GenerateMasterDataForExcel
         /// <returns>返り値はstringのList なかった場合は空のListが返り値となる</returns>
         public List<string> GetSpecifiedExtensionFileFullPath(string fileExtentions)
         {
-            string dir = System.Environment.CurrentDirectory;
-            System.Environment.CurrentDirectory = dir;
+            string dir = Environment.CurrentDirectory;
+            Environment.CurrentDirectory = dir;
             string[] files = System.IO.Directory.GetFiles(@"" + dir, "*", System.IO.SearchOption.TopDirectoryOnly);
             List<string> fileFullPath = new List<string>();
 
@@ -48,7 +48,7 @@ namespace GenerateMasterDataForExcel
         /// <returns>拡張子付きファイル名</returns>
         public string GetSpecifiedExtensionFileName(string fileFullPath)
         {
-            string dir = System.Environment.CurrentDirectory;
+            string dir = Environment.CurrentDirectory;
             Uri u1 = new Uri(dir);
             Uri u2 = new Uri(fileFullPath);
             Uri relativeUri = u1.MakeRelativeUri(u2);
@@ -66,7 +66,7 @@ namespace GenerateMasterDataForExcel
         public List<string> GetSpecifiedExtensionFileNameToList(List<string> fileFullPathList)
         {
             // 得られた絶対パスをUriコンストラクタに値を入れてList初期化
-            Uri u1 = new Uri(System.Environment.CurrentDirectory);
+            Uri u1 = new Uri(Environment.CurrentDirectory);
             List<Uri> u2List = fileFullPathList.Select(filePath => new Uri(filePath)).ToList();
 
             // 得られた絶対パスのリストごとに相対パスを作ってリストに入れる
